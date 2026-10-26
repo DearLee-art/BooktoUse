@@ -22,31 +22,18 @@ BooktoUse/
 
 ## 安装
 
-Skill 就是一个包含 `SKILL.md` 的目录，任何支持 **Agent Skills 约定**的宿主都能加载 —— WorkBuddy、Claude Code，或你自己接的 agent 框架。**目录名必须与 front matter 里的 `name` 一致**（即 `cyf`）。
+Skill 就是一个包含 `SKILL.md` 的目录。想让它被 agent 自动加载时，把目录放进宿主的 skills 目录，**目录名必须与 front matter 里的 `name` 一致**（即 `cyf`）：
 
 ```bash
-cp -r cyf "<宿主的 skills 目录>/"
+cp -r cyf "<skills 目录>/"
 ```
-
-| 宿主 | skills 目录 |
-|---|---|
-| WorkBuddy | `~/.workbuddy/skills/` |
-| Claude Code | `~/.claude/skills/`（个人级）或 `.claude/skills/`（项目级） |
-| 其他宿主 | 按该宿主约定，通常为 `<配置目录>/skills/` |
-
-**macOS / Linux**
-
-```bash
-cp -r cyf ~/.workbuddy/skills/     # WorkBuddy
-cp -r cyf ~/.claude/skills/        # Claude Code
-```
-
-**Windows（PowerShell）**
 
 ```powershell
-Copy-Item -Recurse cyf "$env:USERPROFILE\.workbuddy\skills\"   # WorkBuddy
-Copy-Item -Recurse cyf "$env:USERPROFILE\.claude\skills\"      # Claude Code
+# Windows PowerShell 同义写法
+Copy-Item -Recurse cyf "<skills 目录>"
 ```
+
+<sub>`<skills 目录>` 的常见位置：WorkBuddy 是 `~/.workbuddy/skills/`，Claude Code 是 `~/.claude/skills/`（项目级为 `.claude/skills/`），其他宿主按各自文档。Windows 下 `~` 即 `$env:USERPROFILE`。</sub>
 
 装好后新开一个会话即可调用；若当前会话仍识别不到，重启宿主应用一次。
 
