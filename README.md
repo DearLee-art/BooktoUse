@@ -22,31 +22,45 @@ BooktoUse/
 
 ## 安装
 
-skill 目录需要放在 WorkBuddy 的 skills 目录下，**目录名必须和 front matter 里的 `name` 一致**。
+Skill 就是一个包含 `SKILL.md` 的目录，任何支持 **Agent Skills 约定**的宿主都能加载 —— WorkBuddy、Claude Code，或你自己接的 agent 框架。**目录名必须与 front matter 里的 `name` 一致**（即 `cyf`）。
+
+```bash
+cp -r cyf "<宿主的 skills 目录>/"
+```
+
+| 宿主 | skills 目录 |
+|---|---|
+| WorkBuddy | `~/.workbuddy/skills/` |
+| Claude Code | `~/.claude/skills/`（个人级）或 `.claude/skills/`（项目级） |
+| 其他宿主 | 按该宿主约定，通常为 `<配置目录>/skills/` |
 
 **macOS / Linux**
 
 ```bash
-cp -r cyf ~/.workbuddy/skills/
+cp -r cyf ~/.workbuddy/skills/     # WorkBuddy
+cp -r cyf ~/.claude/skills/        # Claude Code
 ```
 
 **Windows（PowerShell）**
 
 ```powershell
-Copy-Item -Recurse cyf "$env:USERPROFILE\.workbuddy\skills\"
+Copy-Item -Recurse cyf "$env:USERPROFILE\.workbuddy\skills\"   # WorkBuddy
+Copy-Item -Recurse cyf "$env:USERPROFILE\.claude\skills\"      # Claude Code
 ```
 
-装好后新开一个会话即可调用；若当前会话仍识别不到，重开客户端一次。
+装好后新开一个会话即可调用；若当前会话仍识别不到，重启宿主应用一次。
+
+> 也可以完全不安装：`cyf/SKILL.md` 是纯 Markdown，直接当手册读同样有效，只是不会被 agent 自动加载。
 
 ## 使用
 
-显式调用：
+支持 `@` 提及的宿主里可以显式调用（下为 WorkBuddy 语法）：
 
 ```
 @skill:cyf 用系统判读一下 300750
 ```
 
-也可以靠触发词自动命中：`买点`、`卖点`、`止损`、`仓位`、`强势股回调`、`三点共振`、`交易计划`、`复盘检查`、`趋势票`、`超短票` 等。
+其他宿主直接说触发词即可命中：`买点`、`卖点`、`止损`、`仓位`、`强势股回调`、`三点共振`、`交易计划`、`复盘检查`、`趋势票`、`超短票` 等。
 
 `cyf` 只有一个入口，内部按意图切换 mode，不需要记多个命令：
 
