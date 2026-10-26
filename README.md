@@ -36,7 +36,7 @@ cp -r cyf ~/.workbuddy/skills/
 Copy-Item -Recurse cyf "$env:USERPROFILE\.workbuddy\skills\"
 ```
 
-装好后无需重启，下一轮对话即可调用。
+装好后新开一个会话即可调用；若当前会话仍识别不到，重开客户端一次。
 
 ## 使用
 
